@@ -1,0 +1,65 @@
+<script src="./led.js"></script>
+
+<style>
+    /* Import roboto from google Fonts */
+    @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap');
+    body {
+        background-color: rgb(24, 24, 24);
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .led {
+        background-color: green !important;
+    }
+
+    .row {
+        display: flex;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    #timer {
+        text-align: center;
+        color: white;
+        font-size: 100px;
+    }
+
+    #timer::after {
+        content: 's';
+        font-size: 50px;
+    }
+</style>
+
+
+<h1 id="timer">0</h1>
+<div class="row">
+    <my-led id="y" status="off" color="yellow" time="2000"></my-led>
+    <my-led id="p" status="off" color="pink" time="3000"></my-led>
+    <my-led id="c" status="off" color="cyan" time="4000"></my-led>
+</div>
+
+
+<script>
+    let seconds = 0
+    let led1 = document.querySelector('#y')
+    let led2 = document.querySelector('#p')
+    let led3 = document.querySelector('#c')
+
+    led1.start()
+    led2.start()
+    led3.start()
+
+    setInterval(function () {
+        seconds++
+        document.querySelector('#timer').innerHTML = seconds
+    }, 1000);
+
+
+</script>
