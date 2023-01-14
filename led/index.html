@@ -1,65 +1,44 @@
-<script src="./led.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 
-<style>
-    /* Import roboto from google Fonts */
-    @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap');
-    body {
-        background-color: rgb(24, 24, 24);
-        margin: 0;
-        padding: 0;
-        font-family: 'Roboto', sans-serif;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Document</title>
+    <script src="./js/led.js"></script>
+</head>
 
-    .led {
-        background-color: green !important;
-    }
+<body>
+    <div id="config">
+        <h1>Configurações</h1>
+        <button class="add" onclick="addLed()">
+            Adicionar Led
+        </button>
 
-    .row {
-        display: flex;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        justify-content: space-around;
-        align-items: center;
-    }
-
-    #timer {
-        text-align: center;
-        color: white;
-        font-size: 100px;
-    }
-
-    #timer::after {
-        content: 's';
-        font-size: 50px;
-    }
-</style>
+        <table>
+            <thead>
+                <tr>
+                    <th>Led</th>
+                    <th>Cor</th>
+                    <th>Intervalo</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
+        </table>
 
 
-<h1 id="timer">0</h1>
-<div class="row">
-    <my-led id="y" status="off" color="yellow" time="2000"></my-led>
-    <my-led id="p" status="off" color="pink" time="3000"></my-led>
-    <my-led id="c" status="off" color="cyan" time="4000"></my-led>
-</div>
+        <button class="play" onclick="playSimulation()">
+            <img src="data:image/png;base64,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"/>
+        </button>
 
 
-<script>
-    let seconds = 0
-    let led1 = document.querySelector('#y')
-    let led2 = document.querySelector('#p')
-    let led3 = document.querySelector('#c')
+    </div>
 
-    led1.start()
-    led2.start()
-    led3.start()
+    <script src="./js/config.js"></script>
+</body>
 
-    setInterval(function () {
-        seconds++
-        document.querySelector('#timer').innerHTML = seconds
-    }, 1000);
-
-
-</script>
+</html>

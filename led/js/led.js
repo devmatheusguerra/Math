@@ -12,9 +12,9 @@ class Led extends HTMLElement {
 
 
 
-    window.addEventListener('load', () => {
-      new MutationObserver(async () => {
-        await init()
+    document.addEventListener('DOMContentLoaded', () => {
+      new MutationObserver(() => {
+        init()
       }).observe(this, { attributes: true })
 
       init()
@@ -43,6 +43,7 @@ class Led extends HTMLElement {
         align-items: center;
         justify-content: center;
         transition: all .1s ease-in-out;
+        color: #fff9;
         
     }
 
@@ -72,11 +73,12 @@ class Led extends HTMLElement {
     .led${this.key}.on {
         background-color: ${this.color};
         box-shadow: 0 0 15px ${this.color};
+        color: #0009;
     }
       </style>
 
-      ${this.status === 'on' ? `<div class="led${this.key} on">
-      </div>` : `<div class="led${this.key}"> 
+      ${this.status === 'on' ? `<div class="led${this.key} on">${this.time / 1000}
+      </div>` : `<div class="led${this.key}">${this.time / 1000}
       </div>`}
 
     `;
@@ -87,15 +89,40 @@ class Led extends HTMLElement {
     setInterval(() => {
       this.tempo += 1
 
-      if(this.tempo % (this.time / 1000) === 0) {
+      if (this.tempo % (this.time / 1000) === 0) {
         this.setAttribute('status', 'on')
       } else {
         this.setAttribute('status', 'off')
       }
-     
+
 
     }, 1000)
   }
+
+
+  connectedCallback() {
+    
+  }
+
+  disconnectedCallback() {
+    // browser calls this method when the element is removed from the document
+    // (can be called many times if an element is repeatedly added/removed)
+  }
+
+  static get observedAttributes() {
+    return [/* array of attribute names to monitor for changes */];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    // called when one of attributes listed above is modified
+  }
+
+  adoptedCallback() {
+    // called when the element is moved to a new document
+    // (happens in document.adoptNode, very rarely used)
+  }
+
+  // there can be other element methods and properties
 }
 
 customElements.define('my-led', Led);

@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+body {
+    background-color: rgb(24, 24, 24);
+    margin: 0;
+    padding: 0;
+}
+
+.row {
+    display: flex !important;
+    width: 100vw !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    flex-direction: row !important;
+}
+
+
+#timer {
+    text-align: center;
+    color: white;
+    font-size: 100px;
+}
+
+#timer::after {
+    content: 's';
+    font-size: 50px;
+}
+
+
+.information
+{
+    text-align: center;
+    color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 10px 5px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 250px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+h4 {
+    font-size: 35px;
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+li {
+    margin: 17px 0;
+}
+
+#mmc1, #mmc2, #mmc3{
+    font-size: 30px;
+    margin-left: 50px;
+}
+
+
+
+#demo{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 150%;
+    left: 0;
+    z-index: 80;
+    transition: all 1s ease-out;
+}
+
+
+#config{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: all 1s ease-out;
+    text-align: center;
+    color: #fff;
+}
+
+#config > button.add{
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+#config > table
+{
+    font-size: 50px;
+    position: relative;
+    left: 50%;
+    width: clamp(500px, 100%, 1200px);
+    transform: translateX(-50%);
+}
+
+td{
+    width: 33.3%;
+}
+
+
+
+.td-control > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+.td-control > div > input{
+    border: 0;
+    width: 100px;
+    background-color: transparent;
+    text-align: center;
+    font-size: 50px;
+    color: #fff;
+}
+
+.td-control > div > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.td-control > div >  div > button{
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+    border: 0;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Button with color type */
+.colors {
+    background-color: transparent;
+    border: 0;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+}
+
+.play{
+
+    background-color: transparent;
+    border: 0;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.remove{
+    background-color: crimson;
+    border: 0;
+    padding: 10px 0;
+    color: #fff;
+    width: 100px;
+    border-radius: 8px;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+button{
+    cursor: pointer;
+}
