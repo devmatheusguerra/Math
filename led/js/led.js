@@ -1,16 +1,15 @@
 class Led extends HTMLElement {
-  constructor() {
-    super();
+  constructor () {
+    super()
     this.color = null
     this.status = null
     this.time = null
     this.tempo = 0
-    this.key = "__" + Math.random().toString(36).substr(2, 9)
+    this.key = '__' + Math.random().toString(36).substr(2, 9)
+    this.cron = null
 
     // Create a shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
-
-
+    const shadow = this.attachShadow({ mode: 'open' })
 
     document.addEventListener('DOMContentLoaded', () => {
       new MutationObserver(() => {
@@ -23,11 +22,10 @@ class Led extends HTMLElement {
       }
     })
 
-
     const init = () => {
-      this.color = this.getAttribute('color');
-      this.status = this.getAttribute('status');
-      this.time = parseInt(this.getAttribute('time'));
+      this.color = this.getAttribute('color')
+      this.status = this.getAttribute('status')
+      this.time = parseInt(this.getAttribute('time'))
 
       shadow.innerHTML = `
       <style>
@@ -44,6 +42,7 @@ class Led extends HTMLElement {
         justify-content: center;
         transition: all .1s ease-in-out;
         color: #fff9;
+        font-size: 30px
         
     }
 
@@ -77,16 +76,20 @@ class Led extends HTMLElement {
     }
       </style>
 
-      ${this.status === 'on' ? `<div class="led${this.key} on">${this.time / 1000}
-      </div>` : `<div class="led${this.key}">${this.time / 1000}
-      </div>`}
+      ${
+        this.status === 'on'
+          ? `<div class="led${this.key} on">${this.time / 1000}
+      </div>`
+          : `<div class="led${this.key}">${this.time / 1000}
+      </div>`
+      }
 
-    `;
+    `
     }
   }
 
-  start() {
-    setInterval(() => {
+  start () {
+    this.cron = setInterval(() => {
       this.tempo += 1
 
       if (this.tempo % (this.time / 1000) === 0) {
@@ -94,30 +97,31 @@ class Led extends HTMLElement {
       } else {
         this.setAttribute('status', 'off')
       }
-
-
     }, 1000)
   }
 
-
-  connectedCallback() {
-    
+  pause () {
+    clearInterval(this.cron)
   }
 
-  disconnectedCallback() {
+  connectedCallback () {}
+
+  disconnectedCallback () {
     // browser calls this method when the element is removed from the document
     // (can be called many times if an element is repeatedly added/removed)
   }
 
-  static get observedAttributes() {
-    return [/* array of attribute names to monitor for changes */];
+  static get observedAttributes () {
+    return [
+      /* array of attribute names to monitor for changes */
+    ]
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback (name, oldValue, newValue) {
     // called when one of attributes listed above is modified
   }
 
-  adoptedCallback() {
+  adoptedCallback () {
     // called when the element is moved to a new document
     // (happens in document.adoptNode, very rarely used)
   }
@@ -125,4 +129,4 @@ class Led extends HTMLElement {
   // there can be other element methods and properties
 }
 
-customElements.define('my-led', Led);
+customElements.define('my-led', Led)

@@ -6,6 +6,12 @@ let leds = [
     }
 ]
 
+if (window.sessionStorage.leds){
+    leds = JSON.parse(window.sessionStorage.leds)
+}
+
+
+
 function addLed() {
     leds.push({
         id: leds.length + 1,

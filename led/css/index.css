@@ -191,3 +191,42 @@ td{
 button{
     cursor: pointer;
 }
+
+.aviso{
+    color: #fff;
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+}
+
+.aviso h1{
+    font-size: 46px;
+    text-align: center;
+    padding: 1px 0;
+}
+
+.aviso code{
+    background-color: rgb(104, 104, 104);
+    padding: 10px 35px;
+    border-radius: 5px;
+    font-size: 30px;
+    margin: 0 5px;
+}
+
+.back{
+    background-color: transparent;
+    color: #fff;
+    border: 0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
