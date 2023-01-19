@@ -35,14 +35,14 @@ body {
 {
     text-align: center;
     color: white;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     border-radius: 8px;
-    padding: 10px 5px;
+    padding: 5px 0px;
     position: absolute;
     right: 5px;
     top: 5px;
-    width: 250px;
-    height: 200px;
+    width: clamp(50px, 100%, 150px);
+    height: clamp(50px, 100%, 150px);
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -50,7 +50,7 @@ body {
 }
 
 h4 {
-    font-size: 35px;
+    font-size: 1rem;
     margin: 0;
     padding: 0;
 }
@@ -63,12 +63,11 @@ ul{
 }
 
 li {
-    margin: 17px 0;
+    margin: 20px 0;
 }
 
 #mmc1, #mmc2, #mmc3{
-    font-size: 30px;
-    margin-left: 50px;
+    font-size: 1rem;
 }
 
 
@@ -229,4 +228,60 @@ button{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.aviso.small{
+    display: none;
+}
+
+.aviso.large{
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .aviso.small{
+        display: block;
+    }
+    .aviso.large{
+        display: none;
+    }
+
+    .row{
+        transform: scale(.5) translateY(-50%);
+        align-items: flex-start !important;
+        flex-wrap: wrap;
+    }
+
+    .row > my-led{
+        margin: 60px 10px;
+    }
+
+    #config{
+        transform: scale(.8);
+    }
+
+    #config > button.add{
+        right: 0px;
+        margin: 0;
+        width: clamp(50px, 100%, 100px);
+        font-size: 1.2rem;
+    }
+
+    .play{
+
+        background-color: transparent;
+        border: 0;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+}
+
+@media screen and (min-width: 1200px)
+{
+    .aviso.large{
+        display: block;
+    }
 }
